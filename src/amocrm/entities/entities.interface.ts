@@ -10,10 +10,18 @@ export interface EntitiesServiceType {
 
 export type EntitiesName = keyof EntitiesServiceType;
 
+export interface AmoCRMResponse<DT> {
+    _embedded: {
+        contacts?: DT[],
+        companies?: DT[],
+        leads?: DT[],
+    }
+}
+
 export interface CreateEntityResponse {
     id: number;
 }
 
 export interface IEntityService<CretateDTO> {
-    create(data: CretateDTO): CreateEntityResponse
+    create(data: CretateDTO): Promise<CreateEntityResponse | undefined>
 }
