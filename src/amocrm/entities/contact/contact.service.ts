@@ -13,7 +13,6 @@ export class ContactService implements IEntityService<ContactDTO> {
         const response = await firstValueFrom(
             this.httpService.post<AmoCRMResponse<CreateEntityResponse>>(await this.apiRequestService.getBaseURL() + "/api/v4/contacts", [{}],
                 {headers: await this.apiRequestService.getAuthHeaders()}));
-        console.log(response.data._embedded.contacts);
         
         return response && response.data && ({
             id: response.data._embedded.contacts[0].id
